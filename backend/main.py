@@ -180,3 +180,27 @@ def create_order(req: CreateOrderRequest):
             price_map[e["id"]] = e["price"]
     total = sum(price_map.get(it.id, 0) * it.qty for it in req.items)
     return {"status":"pending", "amount": total, "slot": req.delivery_slot}
+
+# ==== CORS (開発用の広め設定) ====
+from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],          # 開発中はすべて許可
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+# ================================
+
+# ==== CORS (開発用の広め設定) ====
+from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],          # 開発中は全て許可
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+# ================================
